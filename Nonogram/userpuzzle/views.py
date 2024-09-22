@@ -66,18 +66,22 @@ def get_list(request, num: int = 10, last_id: int = None):
     puzzle_list = []
     puzzle_dict = {}
 
-    if not last_id == None:
+    if last_id == None:
+        # 마지막으로 받았던 퍼즐의 id가 주어지지 않은 경우. 가장 최근의 퍼즐부터 리턴.
+        puzzles = UserPuzzle.objects.all().order_by('-upload_date')[:num]
+        puzzle_list = list(puzzles.values())
+    else:
+        # 마지막으로 받았던 퍼즐의 id가 주어진 경우. 해당 id의 퍼즐을 찾아서 그 이후의 퍼즐부터 리턴.
         try:
             last_puzzle = UserPuzzle.objects.get(id=last_id)
         except UserPuzzle.DoesNotExist:
+            # 해당 id의 퍼즐을 찾지 못하면 비어있는 딕셔너리를 리턴
             return JsonResponse({}, status=200)
         
         puzzles_after_last_id = UserPuzzle.objects.filter(upload_date__lt=last_puzzle.upload_date).order_by("-upload_date")[:num]
         puzzle_list = list(puzzles_after_last_id.values())
-    else:
-        puzzles = UserPuzzle.objects.all().order_by('-upload_date')[:num]
-        puzzle_list = list(puzzles.values())
 
+    # 언리얼 엔진에서 사용할 수 있게 값 수정
     for i in range(len(puzzle_list)):
         puzzle_dict[i] = puzzle_list[i]
         if 'puzzle_image' in puzzle_dict[i]:
