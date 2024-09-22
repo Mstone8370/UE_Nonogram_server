@@ -13,7 +13,7 @@ class UserPuzzle(models.Model):
     puzzle_name = models.CharField(verbose_name="puzzle_name", name="puzzle_name", max_length=50)
     puzzle_description = models.CharField(verbose_name="puzzle_description", name="puzzle_description", max_length=50)
     user_name = models.CharField(verbose_name="user_name", name="user_name", max_length=16)
-    upload_date = models.DateTimeField(verbose_name="upload_date", name="upload_date", auto_now_add=True)
+    upload_date = models.DateTimeField(verbose_name="upload_date", name="upload_date", auto_now_add=True, db_index=True)
     puzzle_image = models.ImageField(verbose_name="puzzle_image", name="puzzle_image", upload_to=upload_path)
     encoded_hint = models.CharField(verbose_name="encoded_hint", name="encoded_hint", max_length=960)
     hint_count = models.IntegerField(verbose_name="hint_count", name="hint_count")

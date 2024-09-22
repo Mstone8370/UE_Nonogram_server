@@ -67,7 +67,11 @@ def get_list(request, num: int = 10, last_id: int = None):
     puzzle_dict = {}
 
     if not last_id == None:
-        last_puzzle = UserPuzzle.objects.get(id=last_id)
+        try:
+            last_puzzle = UserPuzzle.objects.get(id=last_id)
+        except UserPuzzle.DoesNotExist:
+            return JsonResponse({}, status=200)
+        
         puzzles_after_last_id = UserPuzzle.objects.filter(upload_date__lt=last_puzzle.upload_date).order_by("-upload_date")[:num]
         puzzle_list = list(puzzles_after_last_id.values())
     else:
