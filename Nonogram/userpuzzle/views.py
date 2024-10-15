@@ -81,7 +81,7 @@ def get_list(request, num: int = 10, last_id: int = None):
         puzzles_after_last_id = UserPuzzle.objects.filter(upload_date__lt=last_puzzle.upload_date).order_by("-upload_date")[:num]
         puzzle_list = list(puzzles_after_last_id.values())
 
-    # 언리얼 엔진에서 사용할 수 있게 값 수정
+    # 언리얼 엔진에서 사용할 수 있게 값 변환
     for i in range(len(puzzle_list)):
         puzzle_dict[i] = puzzle_list[i]
         if 'puzzle_image' in puzzle_dict[i]:

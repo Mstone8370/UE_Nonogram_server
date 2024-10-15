@@ -158,26 +158,3 @@ def solve(p, show_runs=True, bf_search=False):
     ret["num"] = n
     ret["ambiguous"] = result
     return ret
-
-
-
-if __name__ == "__main__":
-    # DEPRECATED VALUE
-    # p = "F CAC ACAC CN AAA AABB EBB EAA ECCC HCCC\nD D AE CD AE A DA BBB CC AAB BAA AAB DA AAB AAA BAB AAA CD BBA DA"
-    # p = "CA BDA ACC BD CCAC CBBAC BBBBB BAABAA ABAD AABB BBH BBBD ABBAAA CCEA AACAAB BCACC ACBH DCH ADBE ADBB DBE ECE DAA DB CC\nBC CAC CBAB BDD CDBDE BEBDF ADCDFA DCCFB DBCFC ABDBA BBF AAF BADB DBF AAAAD BDG CEF CBDB BBB FC"
-    # p = "E BCB BEA BH BEK AABAF ABAC BAA BFB OD JH BADCF Q Q R AN AAN EI H G\nE CB BAB AAA AAA AC BB ACC ACCA AGB AIA AJ AJ ACE AH BAF CAG DAG FAH FJ GJ ADK ABK BL CM"
-    # p = "C BA CB BB F AE F A B\nAB CA AE GA E C D C"
-
-    p = "e|B;B;B;B;B;B;B;B;B;B;B;B;B;B;B;B;B;B;B;B;B;B;B;B;B;B;B;B;B;B"
-    p = "B;B|B;B"
-    p = "A;A;A;A;A;A;A;A;A;A|A;A;A;A;A;A;A;A;A;A"
-    p = "B;B;B;B;B;B;B;B;B;B|B;B;B;B;B;B;B;B;B;B"
-    p = "A;A;A;A;B;B;A;A;A;A|A;A;A;B;B;A;A;A;A;A"
-    p = "A;D;B|B;C;B"
-    p = "A;A;D;A;A|A;B;B;B;A"
-    p = "E;EC;JB;BHB;H;FE;BBBB;BBBB;BBB;M|BB;ECB;DBBB;GB;J;EB;DB;EC;GB;EC;BDB;DB"
-    p = "D;CB;DC;CC;G;BF;G;B;C|BC;DB;BF;HB;F;D;E;D"
-    p = "BB;C|B;B;C"
-    p = "A;A;B;B;A;A|A;A;B;B;A;A"
-    ret = solve(p, True, True)
-    print(ret['num'], ret['ambiguous'])
