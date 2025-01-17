@@ -66,7 +66,7 @@ def get_list(request, num: int = 10, last_id: int = None):
     puzzle_list = []
     puzzle_dict = {}
 
-    if last_id == None:
+    if last_id == None or last_id < 0:
         # 마지막으로 받았던 퍼즐의 id가 주어지지 않은 경우. 가장 최근의 퍼즐부터 리턴.
         puzzles = UserPuzzle.objects.all().order_by('-upload_date')[:num]
         puzzle_list = list(puzzles.values())
